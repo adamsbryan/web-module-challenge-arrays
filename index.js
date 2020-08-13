@@ -252,8 +252,86 @@ var regionalFlavors = ["Pink Bubblegum",
     "Chocolate Chocolate Chip Cheesecake",
     "Caramel 'n' Cookies"]
 
-function getRandomFlavors(/*code here*/){
+function getRandomFlavors(arr1, arr2, arr3, arr4){
+    newArr = [];
+    let randNum1;
+    let randNum2;
 
-    /*code here*/
+    for(let i = 0; i < 31; i++)
+    {
+        randNum1 = Math.floor(Math.random() * 4) + 1;
+        randNum2 = Math.floor(Math.random() * 23) + 1;
+        if(randNum1 === 1)
+        {
+            newArr[i] = arr1[randNum2];
+            while(checkDuplicate(newArr, arr1[randNum2] === true))
+            {                
+                randNum2 = Math.floor(Math.random() * 23) + 1;
+                checkDuplicate(newArr, arr1[randNum2]);
+            }
+            newArr[i] = arr1[randNum2];
+        } else if(randNum1 === 2)
+        {
+            newArr[i] = arr2[randNum2];
+        } else if(randNum1 === 3)
+        {
+            newArr[i] = arr3[randNum2];
+        } else if(randNum1 === 4)
+        {
+            newArr[i] = arr4[randNum2];
+        }
+    }
+    
+    return newArr;
 
+
+console.log(getRandomFlavors(originalFlavors, newFlavors, seasonalFlavors, regionalFlavors));
+
+
+/*function getRandomFlavors(arr1, arr2, arr3, arr4){
+    targArray = [arr1, arr2, arr3, arr4];
+    randomFlavors = [];
+    let randNum;
+    for(let i = 0; i<targArray.length; i++)
+    {
+        for(let j = 0; j<31; j++)
+        {
+            randNum = Math.floor(Math.random() * 23) + 1;
+            while(checkDuplicate(randomFlavors, targArray[i][randNum]) === true)
+            {                
+                randNum = Math.floor(Math.random() * 23) + 1;
+                //randomFlavors[j] = targArray[i][randNum];
+                checkDuplicate(randomFlavors, targArray[i][randNum]);
+            }
+            randomFlavors[j] = targArray[i][randNum];
+            /*if (randomFlavors.includes(targArray[i][randNum]))
+            {
+                randomFlavors[j] = targArray[i][randNum];
+            }
+            else 
+            {
+                randNum = Math.floor(Math.random() * 23) + 1;
+                randomFlavors[j] = targArray[i][randNum];
+            }
+        }
+    }
+
+    return randomFlavors;
 }
+*/
+
+function checkDuplicate(arr1, flavor)
+{
+    for(let i = 0; i<arr1.length; i++)
+    {
+        if(arr1[i] === flavor)
+        {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+}
+
+//console.log(getRandomFlavors(originalFlavors, newFlavors, seasonalFlavors, regionalFlavors));
